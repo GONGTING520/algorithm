@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+
+    有效字符串需满足：
+
+    左括号必须用相同类型的右括号闭合。
+    左括号必须以正确的顺序闭合。
+    注意空字符串可被认为是有效字符串。
+
+    示例 1:
+    输入: "()"
+    输出: true
+
+    示例 2:
+    输入: "()[]{}"
+    输出: true
+
+    示例 3:
+    输入: "(]"
+    输出: false
+
+    示例 4:
+    输入: "([)]"
+    输出: false
+
+    示例 5:
+    输入: "{[]}"
+    输出: true
+    */
+    var isValid = function(s) {
+        if(s.length % 2 != 0){
+            return false;
+        }
+        var mapObj = new Map([
+            ['(', ')'],
+            ['[', ']'],
+            ['{', '}'],
+        ]);
+        var arr = []; //括号数组
+        
+        for(var i = 0; i < s.length; i++){
+            if(mapObj.has(s[i])){
+                arr.push(mapObj.get(s[i]));
+            }else{
+                var temp = arr.pop();
+                if(temp != s[i]){
+                    arr.push(temp, s[i]);
+                }
+            }
+        }
+        
+        return arr.length == 0;
+    };
+
+    console.log(isValid('(])'));
+    console.log(isValid('(])['));
+    console.log(isValid('[(])'));
+    console.log(isValid('([]{()})'));
+
+    // switch(s[i]){
+    //     case '(':
+    //         arr.push(0);
+    //         break;
+    //     case '[':
+    //         arr.push(1);
+    //         break;
+    //     case '{':
+    //         arr.push(2);
+    //         break;
+    //     case ')':
+    //         var temp = arr.pop();
+    //         if(temp != 0){
+    //             arr.push(temp);
+    //         }
+    //         break;
+    //     case ']':
+    //         var temp = arr.pop();
+    //         if(temp != 1){
+    //             arr.push(temp);
+    //         }
+    //         break;
+    //     case '}':
+    //         var temp = arr.pop();
+    //         if(temp != 2){
+    //             arr.push(temp);
+    //         }
+    //         break;
+    // }    
+    </script>
+</body>
+</html>
