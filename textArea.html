@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        一个页面，插入n个文本框，有的文本框放图片，有的放文字。
+        每个文本框都是一个矩形。设页面中文字文本框总面积为x，
+        图片文本框总面积为y，要求y/(x+y)>3/4，即图片文本框面积
+        占总文本框面积超过3/4。给你一个页面判断是否满足要求
+
+        输入
+        第一行n    总文本框个数(1 <= n <= 100)
+        接下来n行  每行三个数 a，b，c
+                   a=1表示文字文本框
+                   a=2表示图片文本框
+                   b，c是矩形的长和宽(1 <= b,c <= 100)
+
+        输出
+        输出 x y s
+        x表示文字文本框总面积
+        y表示图片文本框总面积
+        s表示页面是否满足，Y满足，N不满足
+
+        */
+
+        var n = 5;
+        var arr = [{
+            a: 1,
+            b: 21,
+            c: 69
+        },{
+            a: 2,
+            b: 54,
+            c: 23
+        },{
+            a: 2,
+            b: 84,
+            c: 57
+        },{
+            a: 1,
+            b: 15,
+            c: 2
+        },{
+            a: 1,
+            b: 18,
+            c: 47
+        }];
+
+        var picArea = 0;
+        var wordArea = 0;
+        var flag = 'N';
+        for(var i = 0; i < arr.length; i++){
+            if(arr[i].a == 1){
+                wordArea += arr[i].b * arr[i].c;
+            }else{
+                picArea += arr[i].b * arr[i].c;
+            }
+        }
+        if(picArea * 4 == (picArea + wordArea) * 3){
+            flag = 'Y';
+        }
+
+        console.log("文字文本框总面积：" + wordArea);
+        console.log("图片文本框总面积：" + picArea);
+        console.log("是否满足：" + flag);
+    </script>
+</body>
+</html>
