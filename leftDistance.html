@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        有一个宽w的页面，页面上显示了n行只由大写英文字母构成的字符串。
+        每一个大写英文字母的宽度为1，所以含有k个大写英文字母的字符串
+        长为k。现在让n行字符串每行居中。问每行字符串最左边的字母到页
+        面最左边的距离是多少。
+
+        输入
+        第一行     两个数w、n。(1<= w,n <= 100)
+        接下来n行  每行一个字符串
+
+        输出
+        输出n行  第i行为字符串距离最左侧的距离，保留一位小数，
+                 字符串长度超过w输出too long
+        */
+
+        var w = 20;
+        var n = 4;
+        var arr = ['ASDGDSAF','AWETAGA','AUSEHGPOG','ALISDNGOAWIGROALJSDLIA'];
+
+        for(var i = 0; i < n; i++){
+            if(arr[i].length > w){
+                console.log('too long');
+            }else{
+                console.log(((w - arr[i].length) / 2).toFixed(1));
+            }
+        }
+    </script>
+</body>
+</html>
