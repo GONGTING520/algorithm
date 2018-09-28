@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <script>
+        /**
+            求最长无重复子串的长度
+            例：“ddegegth”最长无重复子串为“egth”，长度为4
+        */
+        var str = "ddegegth";
+        var longNum = 0;
+        var subStr = "";
+        for (var i = 0; i < str.length; i++) {
+            var subStr = "";
+            for (var j = i; j < str.length; j++) {
+                if (subStr.indexOf(str[j]) == -1){
+                    subStr += str[j];
+                } else {
+                    if (longNum < subStr.length) {
+                        longNum = subStr.length;
+                    }
+                    break;
+                }
+                if (j == str.length - 1 && longNum < subStr.length) {
+                    longNum = subStr.length;
+                }
+            }
+        }
+        console.log(longNum);
+    </script>
+</body>
+</html>
