@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+        * @param {string[]} strs
+        * @return {string}
+        */
+        var longestCommonPrefix = function(strs) {
+            if(strs.length == 0){
+                return "";
+            }
+            //公共前缀索引
+            var commonIndex = 0;
+            var commonStr;
+            while(true){
+                commonStr = strs[0].substring(0, commonIndex + 1);
+                var tempArr = strs.filter(el => el.indexOf(commonStr) == 0);
+                if(tempArr.length == strs.length){
+                    commonIndex++;
+                    if(commonIndex == strs[0].length){
+                        break;
+                    }
+                }else{
+                    commonIndex--;
+                    commonStr = strs[0].substring(0, commonIndex + 1);
+                    break;
+                }
+            }
+            return commonStr;
+        };
+
+        console.log(longestCommonPrefix(["aa","aa"]));
+        console.log(longestCommonPrefix(["flower","flow","flight"]));
+    </script>
+</body>
+</html>
