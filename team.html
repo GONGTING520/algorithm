@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>team</title>
+</head>
+<body>
+    <script>
+        /**
+            1表示有人，0表示没人，如果一个人的上下左右有人，
+            则他们分为一组，判断有多少组
+            例：
+            1,0,0,0
+            1,0,0,0
+            0,0,1,1
+            0,0,1,1
+            则
+            1
+            1       一组
+            
+            1，1
+            1，1    一组
+        */
+        var num = 4; //数组行数
+        var arr = [[1,0,0,0],[1,0,0,0],[1,1,0,0],[0,1,0,0]];
+        var team = "";
+        for (var i = 0; i <arr.length; i++) {
+            for (var j = 0; j < arr[i].length; j++) {
+                if (arr[i][j] == 0){
+                    continue;
+                }
+                compair(i, j);
+            }
+        }
+        var teamNum = team.split(" ");
+        if (teamNum[teamNum.length - 1] == ""){
+            console.log(teamNum.length - 1);
+        } else {
+            console.log(teamNum.length);
+        }
+        // a横坐标，b纵坐标
+        function compair(a, b){
+            var idx = "" + a + b;
+            if (arr[a][b] == 0 || !arr[a][b]){
+                return;
+            }
+            if (team.indexOf(idx) == -1){
+                if (a == 0){
+                    if (arr[a][b] == arr[a][b - 1] || arr[a][b] == arr[a][b + 1] || arr[a][b] == arr[a + 1][b]){
+                        team += "" + a + b + ",";
+                        compair(a, b + 1);
+                    } else {
+                        if (team.indexOf(idx) == -1){
+                            team += "" + a + b;
+                        }
+                        team += " ";
+                    }
+                } else if (a + 1 >= arr.length) {
+                    if (arr[a][b] == arr[a][b - 1] || arr[a][b] == arr[a][b + 1] || arr[a][b] == arr[a - 1][b]){
+                        team += "" + a + b + ",";
+                        compair(a, b + 1);
+                    } else {
+                        if (team.indexOf(idx) == -1){
+                            team += "" + a + b;
+                        }
+                        team += " ";
+                    }
+                } else {
+                    if(arr[a][b] == arr[a][b - 1] || arr[a][b] == arr[a - 1][b] || arr[a][b] == arr[a][b + 1] || arr[a][b] == arr[a + 1][b]){
+                        if (arr[a][b] == arr[a][b + 1] || arr[a][b] == arr[a + 1][b]){
+                            team += "" + a + b + ",";
+                            compair(a, b + 1);
+                            compair(a + 1, b);
+                        } else {
+                            if (team.indexOf(idx) == -1){
+                                team += "" + a + b;
+                            }
+                            team += " ";
+                        }
+                    } else {
+                        if (team.indexOf(idx) == -1){
+                            team += "" + a + b;
+                        }
+                        team += " ";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
