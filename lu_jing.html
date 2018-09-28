@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>绝对路径</title>
+</head>
+<body>
+    <script>
+    /*
+    * 根据给定路径，输出对应的绝对路径
+    * 输入：/a/././b//../../c/
+    * 输出：/c
+    */
+    var input = "/a/././b//../c/", output, outputArr = [];
+    var inputArr = input.split('/');
+    inputArr.forEach(function(elem){
+        switch(elem){
+            case "":
+            case ".":
+                break;
+            case "..":
+                outputArr.pop();
+                break;
+            default:
+                outputArr.push(elem);
+                break;
+        }
+    });
+    output = "/" + outputArr.join("/");
+    console.log(output);
+    </script>
+</body>
+</html>
